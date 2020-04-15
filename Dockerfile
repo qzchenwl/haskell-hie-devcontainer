@@ -1,4 +1,4 @@
-FROM qzchenwl/docker-hie:bf5bae7
+FROM qzchenwl/docker-hie:9919e2e
 
 # This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
 # property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
@@ -23,3 +23,4 @@ RUN update-ca-trust \
     && /bin/bash /tmp/common-setup.sh "$INSTALL_ZSH" "$USERNAME" "$USER_UID" "$USER_GID" \
     && rm /tmp/common-setup.sh
 
+RUN sudo -H -u vscode cabal new-update
