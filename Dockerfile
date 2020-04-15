@@ -23,4 +23,4 @@ RUN update-ca-trust \
     && /bin/bash /tmp/common-setup.sh "$INSTALL_ZSH" "$USERNAME" "$USER_UID" "$USER_GID" \
     && rm /tmp/common-setup.sh
 
-RUN sudo -H -u vscode cabal new-update
+#RUN sudo -H -u vscode cabal new-update
