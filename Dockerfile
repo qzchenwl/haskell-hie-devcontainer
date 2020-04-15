@@ -24,4 +24,4 @@ RUN update-ca-trust \
     && rm /tmp/common-setup.sh \
     && echo "export PATH=/usr/local/bin:\$PATH" | tee -a /root/.bashrc >> /home/$USERNAME/.bashrc
 
-RUN sudo -H -u vscode cabal new-update
+RUN sudo -H -i -u vscode cabal new-update
