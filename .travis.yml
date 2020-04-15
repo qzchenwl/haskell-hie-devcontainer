@@ -1,0 +1,11 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - export IMG=$DOCKER_USERNAME/haskell-hie-devcontainer:$(git rev-parse --short HEAD)
+  - docker build -t $IMG .
+  - docker push $IMG
+
