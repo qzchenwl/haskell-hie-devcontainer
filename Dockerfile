@@ -24,4 +24,14 @@ RUN update-ca-trust \
     && rm /tmp/common-setup.sh \
     && echo "export PATH=/usr/local/bin:\$PATH" | tee -a /root/.bashrc >> /home/$USERNAME/.bashrc
 
-RUN sudo -H -i -u vscode cabal new-update
+# Setup Haskell
+COPY --from=qzchenwl/docker-hie:9919e2e /usr/local/bin/hie* /usr/local/bin/
+RUN curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
+    | tar -xJf - -C /root/ \
+    && cd /root/ghc-8.6.5 \
+    && ./configure --prefix=/usr/local \
+    && make install \
+    && cd / \
+    && rm -rf /root/ghc-8.6.5 \
+    && sudo -H -i -u vscode cabal new-update
+
