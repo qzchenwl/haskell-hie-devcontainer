@@ -37,6 +37,6 @@ RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-i
     && ./configure --prefix=/usr/local \
     && make install \
     && cd / \
-    && rm -rf /root/ghc-8.6.5
-RUN sudo -H -i -u vscode bash -xc 'cat $HOME/.bashrc; echo $PATH; tree /usr/local/; cabal new-update'
+    && rm -rf /root/ghc-8.6.5 \
+    && sudo -H -i -u vscode cabal new-update
 
