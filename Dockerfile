@@ -24,11 +24,11 @@ RUN update-ca-trust \
     && rm /tmp/common-setup.sh \
     && echo "export PATH=/usr/local/bin:\$PATH" | tee -a /root/.bashrc >> /home/$USERNAME/.bashrc
 
-# Setup Haskell
-COPY --from=qzchenwl/docker-hie:5c66270 /usr/local/bin/hie* /usr/local/bin/
 RUN yum groupinstall -y "Development Tools" \
     && yum install -y epel-release zlib-devel postgresql-devel ncurses-devel tree wget
 
+# Setup Haskell
+COPY --from=qzchenwl/docker-hie:5c66270 /usr/local/bin/hie* /usr/local/bin/
 RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz \
     | tar -xvJf - -C /usr/local/bin \
     && curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
@@ -38,6 +38,5 @@ RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-i
     && make install \
     && cd / \
     && rm -rf /root/ghc-8.6.5
-
 RUN sudo -H -i -u vscode bash -xc 'cat $HOME/.bashrc; echo $PATH; tree /usr/local/; cabal new-update'
 
