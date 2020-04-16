@@ -37,5 +37,5 @@ RUN curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-
     && cd / \
     && rm -rf /root/ghc-8.6.5
 
-RUN sudo -H -i -u vscode bash -xc 'cat $HOME/.bashrc; echo $PATH; cabal new-update'
+RUN sudo -H -i -u vscode bash -xc 'cat $HOME/.bashrc; echo $PATH; tree /usr/local/; cabal new-update'
 
