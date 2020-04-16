@@ -25,7 +25,7 @@ RUN update-ca-trust \
     && echo "export PATH=/usr/local/bin:\$PATH" | tee -a /root/.bashrc >> /home/$USERNAME/.bashrc
 
 RUN dnf groupinstall -y "Development Tools" \
-    && dnf install -y epel-release gmp-devel zlib-devel postgresql-devel ncurses-devel tree wget
+    && dnf install -y epel-release gmp-devel zlib-devel postgresql-devel ncurses-devel ncurses-compat-libs tree wget
 
 # Setup Haskell
 COPY --from=qzchenwl/docker-hie:5c66270 /usr/local/bin/hie* /usr/local/bin/
