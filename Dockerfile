@@ -17,15 +17,15 @@ ARG COMMON_SCRIPT_SHA="dev-mode"
 
 # Configure apt and install packages
 RUN update-ca-trust \
-    && yum install -y wget \
+    && dnf install -y wget \
     && wget -q -O /tmp/common-setup.sh $COMMON_SCRIPT_SOURCE \
     && if [ "$COMMON_SCRIPT_SHA" != "dev-mode" ]; then echo "$COMMON_SCRIPT_SHA /tmp/common-setup.sh" | sha256sum -c - ; fi \
     && /bin/bash /tmp/common-setup.sh "$INSTALL_ZSH" "$USERNAME" "$USER_UID" "$USER_GID" \
     && rm /tmp/common-setup.sh \
     && echo "export PATH=/usr/local/bin:\$PATH" | tee -a /root/.bashrc >> /home/$USERNAME/.bashrc
 
-RUN yum groupinstall -y "Development Tools" \
-    && yum install -y epel-release gmp-devel zlib-devel postgresql-devel ncurses-devel tree wget
+RUN dnf groupinstall -y "Development Tools" \
+    && dnf install -y epel-release gmp-devel zlib-devel postgresql-devel ncurses-devel tree wget
 
 # Setup Haskell
 COPY --from=qzchenwl/docker-hie:5c66270 /usr/local/bin/hie* /usr/local/bin/
