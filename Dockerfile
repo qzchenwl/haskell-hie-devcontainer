@@ -26,7 +26,9 @@ RUN update-ca-trust \
 
 # Setup Haskell
 COPY --from=qzchenwl/docker-hie:9919e2e /usr/local/bin/hie* /usr/local/bin/
-RUN curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
+RUN yum groupinstall -y "Development Tools" \
+    && yum install -y epel-release zlib-devel postgresql-devel ncurses-devel tree wget \
+    && curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
     | tar -xJf - -C /root/ \
     && cd /root/ghc-8.6.5 \
     && ./configure --prefix=/usr/local \
