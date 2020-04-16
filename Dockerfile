@@ -28,7 +28,7 @@ RUN dnf groupinstall -y "Development Tools" \
     && dnf install -y epel-release gmp-devel zlib-devel postgresql-devel ncurses-devel ncurses-compat-libs tree wget
 
 # Setup Haskell
-COPY --from=qzchenwl/docker-hie:5c66270 /usr/local/bin/hie* /usr/local/bin/
+COPY --from=qzchenwl/docker-hie:01e3358 /usr/local/bin/hie* /usr/local/bin/
 RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz \
     | tar -xvJf - -C /usr/local/bin \
     && curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
