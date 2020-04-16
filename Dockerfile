@@ -1,4 +1,4 @@
-FROM qzchenwl/docker-hie:9919e2e
+FROM centos:7
 
 # This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
 # property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
