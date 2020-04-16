@@ -28,12 +28,14 @@ RUN update-ca-trust \
 COPY --from=qzchenwl/docker-hie:9919e2e /usr/local/bin/hie* /usr/local/bin/
 RUN yum groupinstall -y "Development Tools" \
     && yum install -y epel-release zlib-devel postgresql-devel ncurses-devel tree wget \
-    && curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
+
+RUN curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
     | tar -xJf - -C /root/ \
     && cd /root/ghc-8.6.5 \
     && ./configure --prefix=/usr/local \
     && make install \
     && cd / \
     && rm -rf /root/ghc-8.6.5 \
-    && sudo -H -i -u vscode cabal new-update
+
+RUN sudo -H -i -u vscode bash -xc 'cat $HOME/.bashrc; echo $PATH; cabal new-update'
 
