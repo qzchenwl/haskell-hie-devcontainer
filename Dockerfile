@@ -25,7 +25,7 @@ RUN update-ca-trust \
     && echo "export PATH=/usr/local/bin:\$PATH" | tee -a /root/.bashrc >> /home/$USERNAME/.bashrc
 
 # Setup Haskell
-COPY --from=qzchenwl/docker-hie:9919e2e /usr/local/bin/hie* /usr/local/bin/
+COPY --from=qzchenwl/docker-hie:5c66270 /usr/local/bin/hie* /usr/local/bin/
 RUN yum groupinstall -y "Development Tools" \
     && yum install -y epel-release zlib-devel postgresql-devel ncurses-devel tree wget
 
