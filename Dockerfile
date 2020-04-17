@@ -29,7 +29,7 @@ RUN dnf groupinstall -y "Development Tools" \
 
 # Setup Haskell
 COPY --from=qzchenwl/docker-hie:01e3358 /usr/local/bin/hie* /usr/local/bin/
-RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-2.4.0.1/cabal-install-2.4.0.1-x86_64-unknown-linux.tar.xz \
+RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-2.4.1.0/cabal-install-2.4.1.0-x86_64-unknown-linux.tar.xz \
     | tar -xvJf - -C /usr/local/bin \
     && curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
     | tar -xJf - -C /root/ \
