@@ -28,15 +28,15 @@ RUN dnf groupinstall -y "Development Tools" \
     && dnf install -y epel-release gmp-devel zlib-devel postgresql-devel ncurses-devel ncurses-compat-libs tree wget
 
 # Setup Haskell
-COPY --from=qzchenwl/docker-hie:01e3358 /usr/local/bin/hie* /usr/local/bin/
-RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-2.4.1.0/cabal-install-2.4.1.0-x86_64-unknown-linux.tar.xz \
+COPY --from=qzchenwl/docker-hie:d737e93 /usr/local/bin/hie* /usr/local/bin/
+RUN curl -sSL https://downloads.haskell.org/~cabal/cabal-install-3.0.0.0/cabal-install-3.0.0.0-x86_64-unknown-linux.tar.xz \
     | tar -xvJf - -C /usr/local/bin \
-    && curl -sSL https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-centos7-linux.tar.xz \
+    && curl -sSL https://downloads.haskell.org/~ghc/8.8.2/ghc-8.8.2-x86_64-centos7-linux.tar.xz \
     | tar -xJf - -C /root/ \
-    && cd /root/ghc-8.6.5 \
+    && cd /root/ghc-8.8.2 \
     && ./configure --prefix=/usr/local \
     && make install \
     && cd / \
-    && rm -rf /root/ghc-8.6.5 \
+    && rm -rf /root/ghc-8.8.2 \
     && sudo -H -i -u vscode cabal new-update
 
